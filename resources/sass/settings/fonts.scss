@@ -1,0 +1,64 @@
+@font-face {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 300;
+    src: url('../../../public/assets/fonts/monserat/Montserrat-Light.ttf');
+    font-display: fallback;
+}
+
+@font-face {
+    font-family: Montserrat;
+    font-style: normal;
+    src: url('../../../public/assets/fonts/monserat/Montserrat-Regular.ttf');
+    font-display: fallback;
+}
+
+@font-face {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    src: url('../../../public/assets/fonts/monserat/Montserrat-Medium.ttf');
+    font-display: fallback;
+}
+
+@font-face {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    src: url('../../../public/assets/fonts/monserat/Montserrat-SemiBold.ttf');
+    font-display: fallback;
+}
+
+@font-face {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 700;
+    src: url('../../../public/assets/fonts/monserat/Montserrat-Bold.ttf');
+    font-display: fallback;
+}
+
+@font-face {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 800;
+    src: url('../../../public/assets/fonts/monserat/Montserrat-ExtraBold.ttf');
+    font-display: fallback;
+}
+
+
+@mixin loadFont($fontName, $fontPath, $fontWeight: normal, $fontStyle: normal) {
+    @font-face {
+      font-family: $fontName;
+      src: url($fontPath);
+      font-weight: $fontWeight;
+      font-style: $fontStyle;
+      font-display: fallback;
+    }
+  }
+
+
+@include loadFont('Dalton', '../../public/assets/fonts/dalton/co-headline-bold.ttf', 500);
+@include loadFont('Dalton', '../../public/assets/fonts/dalton/co-headline-light.ttf', 400);
+@include loadFont('Dalton', '../../public/assets/fonts/dalton/co-headline.ttf', 300);
+@include loadFont('Dalton', '../../public/assets/fonts/dalton/co-text-bold.ttf', 200);
+@include loadFont('Dalton', '../../public/assets/fonts/dalton/co-text-light.ttf', 100);
