@@ -18,9 +18,9 @@
     <div v-else v-for="(item, index) in news" class="col-lg-4 col-md-6">
         <router-link :to="`/news/${item.slug}`" class="card border-0 radius-10 text-decoration-none hover-shadow-lg">
             <div>
-                <img style="width: 100%; height: 300px; " class="object-cover-center radius-10" :src="item.thumbnail" />
+                <img style="width: 100%; height: 300px; padding: 1%" class="object-cover-center radius-10" :src="item.thumbnail" />
             </div>
-            <div class="card-body p-4" style="height: 100px;">
+            <div class="card-body p-4" style="height: 100%;">
                 <div class="font-weight-700 font-size-20" style="height: 100px;">
                     {{ item.title }}
                 </div>

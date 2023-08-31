@@ -16,7 +16,7 @@
     </section>
     <section>
         <div class="container pt-5">
-            <div class="font-size-21 font-weight-400">
+            <div class="font-size-21 font-weight-400" style="text-align: justify">
                 We are open to fresh graduates who want to start developing careers and
                 professionals with proven experiences in the related business who wish
                 to increase their values and competencies in the trading industry. So
@@ -63,6 +63,7 @@ export default {
         };
     },
     mounted() {
+        this.scrollToTop();
         this.getCareer();
     },
     methods: {
@@ -74,6 +75,12 @@ export default {
                 console.log(error);
             }
         },
+        scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
     },
 };
 </script>

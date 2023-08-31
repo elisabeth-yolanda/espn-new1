@@ -1,25 +1,13 @@
 <template>
-  <div :class="classname">
-    <div
-      class="col-md-6"
-      style="
-        background: white;
-        padding: 8rem;
-        border-radius: 100rem;
-        width: 20%;
-        border: 1rem solid #363635;
-        position: relative;
-        transition: 2s all ease;
-      "
-        :style="styleParent"
-    >
-      <div
-        role="button"
-        @click="
+    <div class="ring-container">
+        <div class="ring" @click="moveRing" :style="styleParent">
+            <div
+                role="button"
+                @click="
           motto = 'Vision';
-          changeMotto();
+          moveRing();
         "
-        style="
+                style="
           position: absolute;
           background: #f2af2d;
           border-radius: 20rem;
@@ -29,24 +17,24 @@
           font-weight: 700;
           color: white;
           display: flex;
-          align-items: left;
-          /* justify-content: center; */
+          align-items: center; /* Vertically center the text */
+          justify-content: center; /* Horizontally center the text */
           top: -40px;
           right: 30px;
-          transition: 5s all ease;
+          transition: 3s all ease;
         "
-        :style="styleVision"
-      >
-        Vision
-      </div>
-      
-      <div
-        role="button"
-        @click="
+                :style="styleVision"
+            >
+                Vision
+            </div>
+
+            <div
+                role="button"
+                @click="
           motto = 'Mission';
-          changeMotto();
+          moveRing();
         "
-        style="
+                style="
           position: absolute;
           background: #ec283a;
           border-radius: 20rem;
@@ -56,25 +44,25 @@
           font-weight: 700;
           color: white;
           display: flex;
-          align-items: left;
-          /* justify-content: center; */
+          align-items: center;
+          justify-content: center;
           bottom: 75px;
           left: -55px;
-          transition: 5s all ease;
+          transition: 3s all ease;
         "
-        :style="styleMission"
-        
-      >
-        Mission
-    </div>      
+                :style="styleMission"
 
-      <div
-        role="button"
-        @click="
+            >
+                Mission
+            </div>
+
+            <div
+                role="button"
+                @click="
           motto = 'Value';
-          changeMotto();
+          moveRing();
         "
-        style="
+                style="
           position: absolute;
           background: #63b645;
           border-radius: 20rem;
@@ -84,115 +72,174 @@
           font-weight: 700;
           color: white;
           display: flex;
-          align-items: left;
-          /* justify-content: center; */
+          align-items: center;
+          justify-content: center;
           bottom: -31px;
           right: 8px;
-          transition: 5s all ease;
+          transition: 3s all ease;
         "
-        :style="styleValue"
-      >
-        Value
-      </div>
+                :style="styleValue"
+            >
+                Value
+            </div>
+        </div>
+
+        <div class="col-md-6" id="infoText">
+            <div v-if="motto === 'Value'">
+                <div v-html="$root.setting['value_about_us']"></div>
+            </div>
+            <div v-else-if="motto === 'Mission'">
+                <div class="col-md-8">
+                    <div v-html="$root.setting['misi_about_us']"></div>
+                </div>
+            </div>
+            <div v-else-if="motto === 'Vision'">
+                <div class="col-md-8">
+                    <div v-html="$root.setting['visi_about_us']"></div>
+                </div>
+            </div>
+            <div v-else>
+                <p>No Data</p>
+                <p>Default Content</p>
+            </div>
+        </div>
     </div>
-    <div class="col-md-6" v-if="this.motto == 'Value'">
-      <div v-html="$root.setting['value_about_us']"></div>
-    </div>
-    <div class="col-md-6" v-if="this.motto == 'Mission'">
-      <div class="col-md-8">
-        <div v-html="$root.setting['misi_about_us']"></div>
-      </div>
-    </div>
-    <div class="col-md-6" v-if="this.motto == 'Vision'">
-      <div class="col-md-8">
-        <div v-html="$root.setting['visi_about_us']"></div>
-      </div>
-    </div>
-  </div>
 </template>
 
 <script>
 export default {
-  name: "Motto",
-  data() {
-    return {
-      motto: null,
-      classname: "row justify-content-left container",
-      styleVision: '',
-      styleMission: '',
-      styleValue: '',
-      styleParent: '',
-      widthSize: '',
-    };
-  },
-  mounted() {
-    this.updateWindowWidth();
-    window.addEventListener("resize", this.updateWindowWidth);
-  },
-  beforeDestroy() {
-    window.removeEventListener("resize", this.updateWindowWidth);
-  },
-  methods: {
-    changeMotto() {
-        switch(this.motto) {
-            case 'Vision' :
-            if(this.widthSize < 770) {
-                this.classname = "row justify-content-md-end justify-content-left align-items-center gap-5 translateX-100% v-slide-x-transition=20";
-                this.styleVision = "transform: rotate(202deg)";
-                this.styleMission = "transform: rotate(200deg)";
-                this.styleValue = "transform: rotate(200deg)";
-                this.styleParent = "transform: rotate(160deg)";
-            }else {
-                this.classname = "row justify-content-md-end justify-content-left align-items-center gap-5 translateX-100% v-slide-x-transition=20";
-                this.styleVision = "transform: rotate(290deg)";
-                this.styleMission = "transform: rotate(291deg)";
-                this.styleValue = "transform: rotate(294deg)";
-                this.styleParent = "transform: rotate(70deg)";
-            }
-            break;
-            case "Mission":
-            if(this.widthSize < 770) {
-                this.classname = "row left-content-md-end justify-content-left align-items-center gap-5 translateX-100% v-slide-x-transition=20";
-                this.styleVision = "transform: rotate(90deg)";
-                this.styleMission = "transform: rotate(90deg)";
-                this.styleValue = "transform: rotate(90deg)";
-                this.styleParent = "transform: rotate(269deg)";
-            }else {
-                this.classname = "row left-content-md-end left-content-left align-items-center gap-5 translateX-100% v-slide-x-transition=20";
-
-                this.styleVision = "transform: rotate(192deg)";
-                this.styleMission = "transform: rotate(189deg)";
-                this.styleValue = "transform: rotate(189deg)";
-                this.styleParent = "transform: rotate(170deg)";
-            }
-            break
-            case "Value" :
-            if(this.widthSize < 770) {
-                this.classname = "row left-content-md-end left-content-left align-items-center gap-5 translateX-100% v-slide-x-transition=20";
-                this.styleVision = "transform: rotate(329deg)";
-                this.styleMission = "transform: rotate(326deg)";
-                this.styleValue = "transform: rotate(330deg)";
-                this.styleParent = "transform: rotate(32deg)";
-            }else {
-                this.classname = "row left-content-md-end left-content-left align-items-center gap-5 translateX-100% v-slide-x-transition=20";
-                this.styleVision = "transform: rotate(57deg)";
-                this.styleMission = "transform: rotate(58deg)";
-                this.styleValue = "transform: rotate(54deg)";
-                this.styleParent = "transform: rotate(304deg)";
-            }
-            break      
-         
-        }
-
+    name: "Motto",
+    data() {
+        return {
+            motto: null,
+            classname: "row justify-content-center container",
+            styleVision: '',
+            styleMission: '',
+            styleValue: '',
+            styleParent: '',
+            widthSize: '',
+            isInfoTextVisible: false,
+        };
     },
-    
-    
-    updateWindowWidth() {
-      this.widthSize = window.innerWidth;
-    }
-  },
+    mounted() {
+        this.updateWindowWidth();
+        window.addEventListener("resize", this.updateWindowWidth);
+    },
+    beforeDestroy() {
+        window.removeEventListener("resize", this.updateWindowWidth);
+    },
+    methods: {
+        // changeMotto() {
+        //     switch(this.motto) {
+        //         case 'Vision':
+        //             this.classname = this.widthSize < 770
+        //                 ? "row justify-content-end container justify-content-left align-items-center gap-5 translateX-100% v-slide-x-transition=20s"
+        //                 : "row justify-content-end container justify-content-left align-items-center gap-5 translateX-100% v-slide-x-transition=20s";
+        //             this.styleVision = this.widthSize < 770
+        //                 ? "transform: rotate(202deg)"
+        //                 : "transform: rotate(290deg)";
+        //             this.styleMission = this.widthSize < 770
+        //                 ? "transform: rotate(200deg)"
+        //                 : "transform: rotate(291deg)";
+        //             this.styleValue = this.widthSize < 770
+        //                 ? "transform: rotate(200deg)"
+        //                 : "transform: rotate(294deg)";
+        //             this.styleParent = this.widthSize < 770
+        //                 ? "transform: rotate(160deg)"
+        //                 : "transform: rotate(70deg)";
+        //             break;
+        //         case "Mission":
+        //             this.classname = this.widthSize < 770
+        //                 ? "row justify-content-end container justify-content-left align-items-center gap-5 translateX-100% v-slide-x-transition=20s"
+        //                 : "row justify-content-end container justify-content-left align-items-center gap-5 translateX-100% v-slide-x-transition=20s";
+        //             this.styleVision = this.widthSize < 770
+        //                 ? "transform: rotate(90deg)"
+        //                 : "transform: rotate(192deg)";
+        //             this.styleMission = this.widthSize < 770
+        //                 ? "transform: rotate(90deg)"
+        //                 : "transform: rotate(189deg)";
+        //             this.styleValue = this.widthSize < 770
+        //                 ? "transform: rotate(90deg)"
+        //                 : "transform: rotate(189deg)";
+        //             this.styleParent = this.widthSize < 770
+        //                 ? "transform: rotate(269deg)"
+        //                 : "transform: rotate(170deg)";
+        //             break;
+        //         case "Value":
+        //             this.classname = this.widthSize < 770
+        //                 ? "row justify-content-end container justify-content-left align-items-center gap-5 translateX-100% v-slide-x-transition=20s"
+        //                 : "row justify-content-end container justify-content-left align-items-center gap-5 translateX-100% v-slide-x-transition=20s";
+        //             this.styleVision = this.widthSize < 770
+        //                 ? "transform: rotate(329deg)"
+        //                 : "transform: rotate(57deg)";
+        //             this.styleMission = this.widthSize < 770
+        //                 ? "transform: rotate(326deg)"
+        //                 : "transform: rotate(58deg)";
+        //             this.styleValue = this.widthSize < 770
+        //                 ? "transform: rotate(330deg)"
+        //                 : "transform: rotate(54deg)";
+        //             this.styleParent = this.widthSize < 770
+        //                 ? "transform: rotate(32deg)"
+        //                 : "transform: rotate(304deg)";
+        //             break;
+        //     }
+        // },
+        moveRing() {
+            const ring = document.querySelector(".ring");
+            switch (this.motto) {
+                case 'Vision':
+                    ring.style.transform = "translate(-73%, 0%) rotate(60deg) ";
+                    this.styleVision = this.widthSize < 770
+                        ? "transform: rotate(0deg)"
+                        : "transform: rotate(300deg)";
+                    this.styleMission = this.widthSize < 770
+                        ? "transform: rotate(0deg)"
+                        : "transform: rotate(300deg)";
+                    this.styleValue = this.widthSize < 770
+                        ? "transform: rotate(0deg)"
+                        : "transform: rotate(300deg)";
+                    break;
+                case "Mission":
+                    ring.style.transform = "translate(-73%, 0%) rotate(170deg)";
+                    this.styleVision = this.widthSize < 770
+                        ? "transform: rotate(90deg)"
+                        : "transform: rotate(190deg)";
+                    this.styleMission = this.widthSize < 770
+                        ? "transform: rotate(90deg)"
+                        : "transform: rotate(189deg)";
+                    this.styleValue = this.widthSize < 770
+                        ? "transform: rotate(90deg)"
+                        : "transform: rotate(189deg)";
+                    break;
+                case "Value":
+                    ring.style.transform = "translate(-73%, 0%) rotate(290deg)";
+                    this.styleVision = this.widthSize < 770
+                        ? "transform: rotate(329deg)"
+                        : "transform: rotate(70deg)";
+                    this.styleMission = this.widthSize < 770
+                        ? "transform: rotate(326deg)"
+                        : "transform: rotate(70deg)";
+                    this.styleValue = this.widthSize < 770
+                        ? "transform: rotate(330deg)"
+                        : "transform: rotate(70deg)";
+                    break;
+            }
 
+            setTimeout(() => {
+                const infoText = document.getElementById("infoText");
+                if (infoText.style.display === "none" || infoText.style.display === "") {
+                    infoText.style.display = "block";
+
+                    // Set a delay before fading in the text
+                    setTimeout(() => {
+                        infoText.style.opacity = "1";
+                    }, 10);
+                }
+            }, 2000);
+        },
+        updateWindowWidth() {
+            this.widthSize = window.innerWidth;
+        }
+    },
 };
-
-
 </script>

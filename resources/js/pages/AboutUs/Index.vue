@@ -57,7 +57,7 @@
           />
         </div>
         <div class="col-md-8">
-          <div class="font-size-16 font-weight-400" style="text-align=justify; direction=ltr;">
+          <div class="font-size-16 font-weight-400" style="text-align:justify; direction:ltr;">
             Today, to emphasize its existence as a trading company in the market and within the Salim Group, PT Elevenia Sinergi Prima Nusantara (ESPN) manages the elevenia.biz and e-Nusantara businesses. It was moving away from its predecessor company and present to actively develop potential Indonesian commodities and embrace every business opportunity from any parties with similar objectives to collaborate in expanding access to the local and global market. At the same time, ESPN also maintained its role in providing solution-based services to support the corporation’s business performance, that’s satisfying and beneficial for the stakeholders
           </div>
         </div>
@@ -73,7 +73,7 @@
           />
         </div>
         <div class="col-md-8">
-          <div class="font-size-16 font-weight-400" style="text-align=justify;, direction=ltr;">
+          <div class="font-size-16 font-weight-400" style="text-align:justify;, direction=ltr;">
             After being acquired by Salim Group in 2017, PT XL Planet, which was
             previously known as “elevenia”, a customer-to-customer (C2C) player
             in the e-commerce industry, has made a revolutionary switch in its
@@ -98,7 +98,7 @@
           />
         </div>
         <div class="col-md-8">
-          <div class="font-size-16 font-weight-400" style="text-align=justify;, direction=ltr;">
+          <div class="font-size-16 font-weight-400" style="text-align:justify;, direction=ltr;">
             Later in the interactions with various clients, business partners,
             and related government institutions, the Business Development team
             identified another business opportunity that was feasible and
@@ -231,6 +231,50 @@
       </div>
     </section>
   </div>
+    <section class="hero">
+        <div
+            :style="`
+        background: url('/${$root.setting['image_header_about_us']}');
+        background-size: cover;
+        height: 20vh;
+        background-repeat: no-repeat;
+        margin-bottom:-2%;
+      `"
+            class="d-flex align-items-center position-relative hero-background-sejarah"
+        >
+            <div :class="`arrow-button left ${scrollLeftDisabled ? 'disabled' : ''}`" @click="scrollLeft">
+                <div>
+                    <i class="fas fa-angle-left"></i>
+                </div>
+            </div>
+            <div class="overflow-auto ms-4 scrollbar-none">
+                <div
+                    class="achievement d-flex align-items-start gap-5 ps-4 pe-5 pt-md-5"
+                    :style="`transform: translateX(-${scrollOffset}px); transition: transform 1s ease;`"
+                >
+                    <div
+                        class="position-relative"
+                        v-for="(item, index) in achievements"
+                        :key="index"
+                    >
+                        <div class="item-achievement d-inline-block text-center">
+                            <div class="text-p-white font-size-20 font-weight-700">
+                                {{ item.year }}
+                            </div>
+                            <div class="text-p-white font-size-12 font-weight-400">
+                                {{ item.description }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div :class="`arrow-button right ${scrollRightDisabled ? 'disabled' : ''}`" @click="scrollRight">
+                <div>
+                    <i class="fas fa-angle-right"></i>
+                </div>
+            </div>
+        </div>
+    </section>
 </template>
 
 <script>
@@ -253,10 +297,11 @@ export default {
       scrollOffset: 0,
       scrollStep: 200,
       scrollLeftDisabled: false,
-      scrollRightDisabled: false,
+      scrollRightDisabled: false
     };
   },
   mounted() {
+      this.scrollToTop();
     this.getPartner();
     this.getSejarah();
     this.getOurTeam();
@@ -337,6 +382,13 @@ export default {
     scrollToOffset() {
       this.containerElement.scrollLeft = this.scrollOffset;
     },
+      scrollToTop() {
+          window.scrollTo({
+              top: 0,
+              behavior: "smooth"
+          });
+      }
+
   },
 };
 </script>

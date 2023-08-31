@@ -1,23 +1,22 @@
 <template>
     <section class="hero">
         <div class="image-hero position-relative">
-            <img :src="`/${$root.setting['image_header_home']}`" style="width: 100%;" />
-            <div>
-                <div v-html="$root.setting['quote_home']" class="position-absolute text-white font-size-xl-21 font-size-lg-18 font-size-md-14 font-size-sm-11 font-size-6"
-                    style="top: 40%; right: 5%">
-                </div>
-                <div class="position-absolute text-white font-size-xl-21 font-size-lg-18 font-size-md-14 font-size-sm-11 font-size-6"
-                    style="top: 73%; right: 2%">
-                    <div class="d-flex align-items-center gap-md-3 gap-1">
-                        <a href="https://elevenia.biz" target="_blank">
-                            <img class="img-elevenia" src="/assets/images/elevenia-white-yellow.png" />
-                        </a>
-                        <a class="pt-3" href="https://nusantara.elevenia.co.id" target="_blank">
-                            <img class="img-nusantara" src="/assets/images/enusantara.png" />
-                        </a>
-                    </div>
+            <div
+                v-html="$root.setting['quote_home']"
+                class="position-absolute text-white quote-text"
+                style="margin-left: 3%"
+            ></div>
+            <div class="position-absolute text-white logo-container">
+                <div class="d-flex align-items-center gap-md-3 gap-1">
+                    <a href="https://elevenia.biz" target="_blank">
+                        <img class="img-elevenia" src="/assets/images/elevenia-white-yellow.png" />
+                    </a>
+                    <a class="pt-3" href="https://nusantara.elevenia.co.id" target="_blank">
+                        <img class="img-nusantara" src="/assets/images/enusantara.png" />
+                    </a>
                 </div>
             </div>
+            <img :src="`/${$root.setting['image_header_home']}`" style="width: 100%;" />
         </div>
     </section>
     <section class="my-5 news-section">
@@ -30,7 +29,7 @@
             </div>
             <div class="text-center pb-5">
                 <router-link class="text-primary font-weight-600 text-decoration-none font-size-18" role="button"
-                    to="/news">
+                             to="/news">
                     See More
                 </router-link>
             </div>
@@ -68,6 +67,50 @@
             </div>
         </div>
     </section>
+    <section class="hero">
+        <div
+            :style="`
+        background: url('/${$root.setting['image_header_about_us']}');
+        background-size: cover;
+        height: 20vh;
+        background-repeat: no-repeat;
+        margin-bottom:-2%;
+      `"
+            class="d-flex align-items-center position-relative hero-background-sejarah"
+        >
+            <div :class="`arrow-button left ${scrollLeftDisabled ? 'disabled' : ''}`" @click="scrollLeft">
+                <div>
+                    <i class="fas fa-angle-left"></i>
+                </div>
+            </div>
+            <div class="overflow-auto ms-4 scrollbar-none">
+                <div
+                    class="achievement d-flex align-items-start gap-5 ps-4 pe-5 pt-md-5"
+                    :style="`transform: translateX(-${scrollOffset}px); transition: transform 1s ease;`"
+                >
+                    <div
+                        class="position-relative"
+                        v-for="(item, index) in achievements"
+                        :key="index"
+                    >
+                        <div class="item-achievement d-inline-block text-center">
+                            <div class="text-p-white font-size-20 font-weight-700">
+                                {{ item.year }}
+                            </div>
+                            <div class="text-p-white font-size-12 font-weight-400">
+                                {{ item.description }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div :class="`arrow-button right ${scrollRightDisabled ? 'disabled' : ''}`" @click="scrollRight">
+                <div>
+                    <i class="fas fa-angle-right"></i>
+                </div>
+            </div>
+        </div>
+    </section>
 </template>
 
 <script>
@@ -87,12 +130,15 @@ export default {
             wayWeDoBusiness: [],
             clients: [],
             loaderClients: false,
-            loaderBusiness: false
+            loaderBusiness: false,
+            achievements: []
         }
     },
     mounted() {
+        this.scrollToTop();
         this.getClients();
         this.getBusiness();
+        this.getSejarah();
     },
     methods: {
         async getClients() {
@@ -114,6 +160,37 @@ export default {
                 console.log(err);
             }
             this.loaderBusiness = false;
+        },
+        async getSejarah() {
+            this.loadingSejarah = true;
+            const res = await axios.get(
+                "/api/sejarah/getAll?orderBy=year|asc"
+            );
+            this.achievements = res.data.data;
+            this.loadingSejarah = false;
+        },
+        scrollLeft() {
+            this.scrollOffset -= this.scrollStep;
+            if (this.scrollOffset < 0) {
+                this.scrollOffset = 0;
+            }
+            this.scrollToOffset();
+        },
+        scrollRight() {
+            this.scrollOffset += this.scrollStep;
+            if (this.scrollOffset > this.maxScrollOffset) {
+                this.scrollOffset = this.maxScrollOffset;
+            }
+            this.scrollToOffset();
+        },
+        scrollToOffset() {
+            this.containerElement.scrollLeft = this.scrollOffset;
+        },
+        scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
         }
     }
 };

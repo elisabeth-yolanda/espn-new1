@@ -30,13 +30,18 @@
                 </div>
                 <div class="col-md-4 pt-md-0 pt-4 mt-md-0 mt-5 ps-xl-5">
                     <div style="
-                        background-image: url('/assets/images/news-sidebar.svg');
-                        background-repeat: no-repeat; min-height: 600px;">
-                        <div class="px-lg-4 px-sm-3 px-4 pt-2">
-                            <div class="font-size-28 font-weight-700 text-white">
+                            background-image: url('/assets/images/news-sidebar.svg');
+                            background-repeat: no-repeat;
+                            background-size: cover;
+                            background-position: center;
+                            min-height: 600px;
+                        ">
+                        <div class="px-4 pt-2" style="height: 100%; width:100%">
+                            <div class="fs-3 fw-bold text-white">
                                 Recent News
                             </div>
                         </div>
+
                         <div v-if="loadingRecentNews" class="vstack gap-4 mt-md-5 mt-3 px-lg-5 px-4 pb-5 pt-lg-3 pt-4">
                             <div v-for="n in 3">
                                 <div class="font-weight-400 font-size-28">
@@ -50,8 +55,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-else class="vstack gap-4 mt-md-5 mt-3 px-lg-5 px-4 pb-5 pt-lg-3 pt-4">
-                            <router-link class="text-decoration-none text-p-black" :to="`/news/${item.slug}`" v-for="(item, index) in recentNews" :key="index">
+                        <div v-else class="vstack gap-4 mt-3 px-lg-5 px-4 pb-5 pt-5">
+                        <router-link class="text-decoration-none text-p-black" :to="`/news/${item.slug}`" v-for="(item, index) in recentNews" :key="index">
                                 <div class="font-weight-400 font-size-28">
                                     {{ item.title }}
                                 </div>

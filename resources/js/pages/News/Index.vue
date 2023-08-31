@@ -22,7 +22,7 @@
                 <div class="row justify-content-center align-items-center py-5 px-xl-5 g-md-5 gy-4">
                     <NewsComponent />
                 </div>
-                <div class="pt-5 row justify-content-start align-items-center gy-4">
+                <div class="pt-5 row justify-content-start align-items-center py-4 px-l-5 g-md-6 gy-2">
                     <div v-if="loadingNews" class="col-lg-4 col-md-6" v-for="n in 3">
                         <div
                             class="card border-0 radius-10 text-decoration-none hover-shadow-lg">
@@ -44,9 +44,9 @@
                     </div>
                     <div v-else class="col-lg-4 col-md-6" v-for="(item, index) in news" :key="index">
                         <router-link :to="`/news/${item.slug}`"
-                            class="card border-0 radius-10 text-decoration-none hover-shadow-lg">
+                            class="card border-0 radius-10 text-decoration-none hover-shadow-lg" style="height: 465px; width: 415px">
                             <div>
-                                <img style="width: 100%; height: 230px;" class="object-cover-center radius-10"
+                                <img style="width: 415px; height: 200px; object-fit: cover; padding:1%" class="object-cover-center radius-10"
                                     :src="item.thumbnail" />
                             </div>
                             <div class="card-body p-4">
@@ -88,6 +88,7 @@ export default {
         };
     },
     mounted() {
+        this.scrollToTop();
         this.getData();
     },
     methods: {
@@ -105,6 +106,12 @@ export default {
             }
             this.loadingNews = false;
         },
+        scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
     },
 };
 </script>

@@ -33,12 +33,27 @@ class ContactUsController extends Controller
         // $data['email'] = '';
         // $data = ContactUsMessage::create($input);
 
-        Mail::to(env('MAIL_TO'))->send(new SendMessageContactEmail($input));
+//        Mail::to(env('MAIL_TO'))->send(new SendMessageContactEmail($input));
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Message sent successfully',
-        ], 200);
+        try {
+            Mail::to('corporate.secretary@elevenia.co.id')->send(new SendMessageContactEmail($input));
+            return response()->json([
+                'status' => true,
+                'message' => 'Message sent successfully',
+            ], 204);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'An error occurred while sending the email.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+
+
+//        return response()->json([
+//            'status' => true,
+//            'message' => 'Message sent successfully',
+//        ], 200);
     }
 
     public function index()

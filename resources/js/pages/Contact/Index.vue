@@ -164,7 +164,7 @@ export default {
     };
   },
   mounted() {
-
+      this.scrollToTop();
   },
   methods: {
     async submitForm() {
@@ -197,7 +197,13 @@ export default {
                 this.validationErrors = e.response.data.message;
         }
         this.loaderSubmit = false;
-    }
+    },
+      scrollToTop() {
+          window.scrollTo({
+              top: 0,
+              behavior: "smooth"
+          });
+      }
   },
 };
 </script>
