@@ -1,19 +1,21 @@
 <template>
     <section class="hero">
         <div class="image-hero position-relative">
-            <div
-                v-html="$root.setting['quote_home']"
-                class="position-absolute text-white quote-text"
-                style="margin-left: 3%"
-            ></div>
-            <div class="position-absolute text-white logo-container">
-                <div class="d-flex align-items-center gap-md-3 gap-1">
-                    <a href="https://elevenia.biz" target="_blank">
-                        <img class="img-elevenia" src="/assets/images/elevenia-white-yellow.png" />
-                    </a>
-                    <a class="pt-3" href="https://nusantara.elevenia.co.id" target="_blank">
-                        <img class="img-nusantara" src="/assets/images/enusantara.png" />
-                    </a>
+            <img :src="`/${$root.setting['image_header_home']}`" style="width: 100%;" />
+            <div>
+                <div v-html="$root.setting['quote_home']" class="position-absolute text-white font-size-xl-21 font-size-lg-18 font-size-md-14 font-size-sm-11 font-size-6"
+                    style="top: 40%; right: 5%">
+                </div>
+                <div class="position-absolute text-white font-size-xl-21 font-size-lg-18 font-size-md-14 font-size-sm-11 font-size-6"
+                    style="top: 73%; right: 2%">
+                    <div class="d-flex align-items-center gap-md-3 gap-1">
+                        <a href="https://elevenia.biz" target="_blank">
+                            <img class="img-elevenia" src="/assets/images/elevenia-white-yellow.png" />
+                        </a>
+                        <a class="pt-3" href="https://nusantara.elevenia.co.id" target="_blank">
+                            <img class="img-nusantara" src="/assets/images/enusantara.png" />
+                        </a>
+                    </div>
                 </div>
             </div>
             <img :src="`/${$root.setting['image_header_home']}`" style="width: 100%;" />
