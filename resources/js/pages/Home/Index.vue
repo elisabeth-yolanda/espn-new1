@@ -9,7 +9,7 @@
                 <div class="position-absolute text-white font-size-xl-21 font-size-lg-18 font-size-md-14 font-size-sm-11 font-size-6"
                     style="top: 73%; right: 2%">
                     <div class="d-flex align-items-center gap-md-3 gap-1">
-                        <a href="https://elevenia.biz" target="_blank">
+                        <a href="https://biz.elevenia" target="_blank">
                             <img class="img-elevenia" src="/assets/images/elevenia-white-yellow.png" />
                         </a>
                         <a class="pt-3" href="https://nusantara.elevenia.co.id" target="_blank">
