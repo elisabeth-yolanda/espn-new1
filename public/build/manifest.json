@@ -52,7 +52,7 @@
     "src": "public/assets/fonts/dalton/co-text-light.ttf"
   },
   "public/assets/images/waves-news.svg": {
-    "file": "assets/waves-news-b5b6bb1b.svg",
+    "file": "assets/waves-news-0c30c0da.svg",
     "src": "public/assets/images/waves-news.svg"
   },
   "resources/js/app.css": {
@@ -73,12 +73,12 @@
     "css": [
       "assets/app-7b34ffdb.css"
     ],
-    "file": "assets/app-845a87ac.js",
+    "file": "assets/app-46a0b73b.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-2941f7da.css",
+    "file": "assets/app-f622f84e.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   }
