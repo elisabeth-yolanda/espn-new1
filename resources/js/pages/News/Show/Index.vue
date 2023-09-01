@@ -25,7 +25,7 @@
                             <div class="skeleton-box radius-10 bg-p-grey-16" style="height: 15px; width: 80%;"></div>
                             <div class="skeleton-box radius-10 bg-p-grey-16" style="height: 15px; width: 90%;"></div>
                         </div>
-                        <div v-html="detail.content" v-else></div>
+                        <div v-html="detail.content" v-else style="text-align:justify"></div>
                     </article>
                 </div>
                 <div class="col-md-4 pt-md-0 pt-4 mt-md-0 mt-5 ps-xl-5">

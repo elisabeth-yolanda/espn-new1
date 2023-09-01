@@ -1072,11 +1072,28 @@ $color in $theme-colors {
             position: absolute;
             top: 40%;
             right: 5%;
-
-            @media screen and (max-width: $breakpoint-sm) {
-                font-size: 14px;
+            h4:first-child {
+                margin-top: 15%;
+            }
+        }
+        @media screen and (max-width: $breakpoint-sm) {
+            .quote-text {
+                font-size: 15px;
+                font-weight: lighter;
                 top: 10%;
                 right: 10px;
+                left : 3%;
+                h5 {
+                    font-weight: lighter;
+                    font-size: 15px;
+                }
+                h4 {
+                    font-size: 15px;
+                    margin-left: 20%;
+                }
+                h4:first-child {
+                    margin-top: 10%;
+                }
             }
         }
 

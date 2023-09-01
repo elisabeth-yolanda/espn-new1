@@ -1,16 +1,12 @@
 <template class="bg-p-white">
     <section class="hero" style="margin-top: 25px !important;">
         <div class="image-hero position-relative">
-            <img :src="`/${$root.setting['image_header_news']}`" style="width: 100%;" />
-            <div>
-                <div class="position-absolute text-white font-weight-500 font-size-xl-30 font-size-md-28 font-size-md-18 font-size-sm-18 font-size-10"
+            <div
+                class="position-absolute text-white quote-text"
                 v-html="$root.setting['quote_news']"
-                style="
-                    top: 50%;
-                    right: 16%;
-                    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                "></div>
+            >
             </div>
+            <img :src="`/${$root.setting['image_header_news']}`" style="width: 100%;" />
         </div>
     </section>
     <section class="px-lg-5 px-3">

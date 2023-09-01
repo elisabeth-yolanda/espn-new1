@@ -2,17 +2,12 @@ import axios from 'axios';
 <template class="bg-p-white">
     <section class="hero" style="margin-top: 15px !important;">
         <div class="image-hero position-relative">
-            <img :src="`/${$root.setting['image_header_product_service']}`" style="width: 100%;"/>
-            <div>
-                <div
-                    class="position-absolute text-white font-weight-500 font-size-xl-30 font-size-md-28 font-size-md-18 font-size-sm-18 font-size-10"
-                    style="
-          top: 50%;
-          right: 3%;
-          text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-          " v-html="$root.setting['quote_product_service']">
-                </div>
+            <div
+                class="position-absolute text-white quote-text"
+                v-html="$root.setting['quote_product_service']"
+            >
             </div>
+            <img :src="`/${$root.setting['image_header_product_service']}`" style="width: 100%;"/>
         </div>
     </section>
     <section class="container">

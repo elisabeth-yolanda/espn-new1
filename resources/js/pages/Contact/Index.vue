@@ -1,14 +1,13 @@
 <template>
   <section class="hero">
     <div class="image-hero position-relative">
-      <img :src="`/${$root.setting['image_header_contact_us']}`" style="width: 100%;" />
-      <div>
         <div
-          class="position-absolute text-white font-weight-500 font-size-xl-30 font-size-md-28 font-size-md-18 font-size-sm-18 font-size-10"
-          style="top: 40%; right: 8%;"
-          v-html="$root.setting['quote_contact_us']"
+            class="position-absolute text-white quote-text"
+            v-html="$root.setting['quote_contact_us']"
         >
         </div>
+      <img :src="`/${$root.setting['image_header_contact_us']}`" style="width: 100%;" />
+      <div>
       </div>
     </div>
   </section>

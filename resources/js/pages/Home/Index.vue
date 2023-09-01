@@ -4,7 +4,6 @@
             <div
                 v-html="$root.setting['quote_home']"
                 class="position-absolute text-white quote-text"
-                style="margin-left: 3%"
             ></div>
             <div class="position-absolute text-white logo-container">
                 <div class="d-flex align-items-center gap-md-3 gap-1">
@@ -67,50 +66,6 @@
             </div>
         </div>
     </section>
-    <section class="hero">
-        <div
-            :style="`
-        background: url('/${$root.setting['image_header_about_us']}');
-        background-size: cover;
-        height: 20vh;
-        background-repeat: no-repeat;
-        margin-bottom:-2%;
-      `"
-            class="d-flex align-items-center position-relative hero-background-sejarah"
-        >
-            <div :class="`arrow-button left ${scrollLeftDisabled ? 'disabled' : ''}`" @click="scrollLeft">
-                <div>
-                    <i class="fas fa-angle-left"></i>
-                </div>
-            </div>
-            <div class="overflow-auto ms-4 scrollbar-none">
-                <div
-                    class="achievement d-flex align-items-start gap-5 ps-4 pe-5 pt-md-5"
-                    :style="`transform: translateX(-${scrollOffset}px); transition: transform 1s ease;`"
-                >
-                    <div
-                        class="position-relative"
-                        v-for="(item, index) in achievements"
-                        :key="index"
-                    >
-                        <div class="item-achievement d-inline-block text-center">
-                            <div class="text-p-white font-size-20 font-weight-700">
-                                {{ item.year }}
-                            </div>
-                            <div class="text-p-white font-size-12 font-weight-400">
-                                {{ item.description }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div :class="`arrow-button right ${scrollRightDisabled ? 'disabled' : ''}`" @click="scrollRight">
-                <div>
-                    <i class="fas fa-angle-right"></i>
-                </div>
-            </div>
-        </div>
-    </section>
 </template>
 
 <script>
@@ -137,7 +92,6 @@ export default {
     mounted() {
         this.getClients();
         this.getBusiness();
-        this.getSejarah();
     },
     methods: {
         async getClients() {
@@ -159,14 +113,6 @@ export default {
                 console.log(err);
             }
             this.loaderBusiness = false;
-        },
-        async getSejarah() {
-            this.loadingSejarah = true;
-            const res = await axios.get(
-                "/api/sejarah/getAll?orderBy=year|asc"
-            );
-            this.achievements = res.data.data;
-            this.loadingSejarah = false;
         },
         scrollLeft() {
             this.scrollOffset -= this.scrollStep;
