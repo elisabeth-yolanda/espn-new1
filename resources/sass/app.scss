@@ -1080,19 +1080,24 @@ $color in $theme-colors {
             .quote-text {
                 font-size: 15px;
                 font-weight: lighter;
-                top: 10%;
+                position: absolute;
                 right: 10px;
                 left : 3%;
                 h5 {
                     font-weight: lighter;
-                    font-size: 15px;
+                    font-size: 9px;
+                    margin-left: 61%;
+                    margin-bottom: 0.35em;
+                }
+                h5:first-child {
+                    margin-top: -6%;
                 }
                 h4 {
                     font-size: 15px;
                     margin-left: 20%;
                 }
                 h4:first-child {
-                    margin-top: 10%;
+                    margin-top: 2%;
                 }
             }
         }
