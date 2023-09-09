@@ -56,7 +56,11 @@
                             </div>
                         </div>
                         <div v-else class="vstack gap-4 mt-3 px-lg-5 px-4 pb-5 pt-5">
-                        <router-link class="text-decoration-none text-p-black" :to="`/news/${item.slug}`" v-for="(item, index) in recentNews" :key="index">
+                            <a :href="`/news/${item.slug}`"
+                               class="text-decoration-none text-p-black"
+                               v-for="(item, index) in recentNews"
+                               :key="index"
+                            >
                                 <div class="font-weight-400 font-size-28">
                                     {{ item.title }}
                                 </div>
@@ -66,7 +70,7 @@
                                 <div class="font-weight-400 font-size-16 text-p-blue-21 pt-2">
                                     {{ item.created_at }}
                                 </div>
-                            </router-link>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -79,6 +83,7 @@
 import axios from "axios";
 import { parseHtml, formatDate } from '@/Helper/Helpers';
 import moment from 'moment';
+import router from "../../../router";
 export default {
     name: "Index",
     data() {
@@ -114,11 +119,12 @@ export default {
                 console.log(error);
             }
             this.loadingRecentNews = false;
-        },
+        }
     },
     mounted() {
         this.getDetail();
         this.getRecentNews();
+        // this.reloadAndScrollTop();
     },
 }
 </script>

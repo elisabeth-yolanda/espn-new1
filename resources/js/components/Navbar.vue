@@ -23,7 +23,7 @@
                 </div>
                 <b-collapse id="navBarCollapse" is-nav>
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                        <li v-for="item in navbar" class="nav-item">
+                        <li v-for="item in navbar" class="nav-item" @click="toggleCollapse(false)">
                             <router-link :class="`nav-link ${item.link == currentUrl ? 'active' : ''}`" :to="item.link">
                                 {{ item.name }}
                             </router-link>
@@ -89,7 +89,7 @@ export default {
                 },
                 {
                     name: 'About Us',
-                    link: '/about-us'
+                    link: '/about-us',
                 },
                 {
                     name: 'Product & Services',

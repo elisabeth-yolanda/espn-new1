@@ -1,13 +1,17 @@
 <template>
-    <div class="ring-container">
-        <div class="ring" @click="moveRing" :style="styleParent">
-            <div
-                role="button"
-                @click="
+    <div class="row align-items-center gap-md-0 gap-3 " style="position: relative;">
+        <div class="col-md-12 col-lg-5">
+            <!-- Content for the second column -->
+        </div>
+        <div class="col-md-12 col-lg-2 d-flex flex-column align-items-center">
+            <div class="ring justify-end" @click="moveRing" :style="styleParent">
+                <div
+                    role="button"
+                    @click="
           motto = 'Vision';
           moveRing();
         "
-                style="
+                    style="
           position: absolute;
           background: #f2af2d;
           border-radius: 20rem;
@@ -23,18 +27,18 @@
           right: 30px;
           transition: 3s all ease;
         "
-                :style="styleVision"
-            >
-                Vision
-            </div>
+                    :style="styleVision"
+                >
+                    Vision
+                </div>
 
-            <div
-                role="button"
-                @click="
+                <div
+                    role="button"
+                    @click="
           motto = 'Mission';
           moveRing();
         "
-                style="
+                    style="
           position: absolute;
           background: #ec283a;
           border-radius: 20rem;
@@ -50,19 +54,19 @@
           left: -55px;
           transition: 3s all ease;
         "
-                :style="styleMission"
+                    :style="styleMission"
 
-            >
-                Mission
-            </div>
+                >
+                    Mission
+                </div>
 
-            <div
-                role="button"
-                @click="
+                <div
+                    role="button"
+                    @click="
           motto = 'Value';
           moveRing();
         "
-                style="
+                    style="
           position: absolute;
           background: #63b645;
           border-radius: 20rem;
@@ -78,29 +82,31 @@
           right: 8px;
           transition: 3s all ease;
         "
-                :style="styleValue"
-            >
-                Value
+                    :style="styleValue"
+                >
+                    Value
+                </div>
             </div>
         </div>
-
-        <div class="col-md-6" id="infoText">
-            <div v-if="motto === 'Value'">
-                <div v-html="$root.setting['value_about_us']"></div>
-            </div>
-            <div v-else-if="motto === 'Mission'">
-                <div class="col-md-8">
-                    <div v-html="$root.setting['misi_about_us']"></div>
+        <div class="col-md-12 col-lg-5">
+            <div class="col-md-12" id="infoText">
+                <div v-if="motto === 'Value'">
+                    <div v-html="$root.setting['value_about_us']"></div>
                 </div>
-            </div>
-            <div v-else-if="motto === 'Vision'">
-                <div class="col-md-8">
-                    <div v-html="$root.setting['visi_about_us']"></div>
+                <div v-else-if="motto === 'Mission'">
+                    <div class="col-md-12">
+                        <div v-html="$root.setting['misi_about_us']"></div>
+                    </div>
                 </div>
-            </div>
-            <div v-else>
-                <p>No Data</p>
-                <p>Default Content</p>
+                <div v-else-if="motto === 'Vision'">
+                    <div class="col-md-12">
+                        <div v-html="$root.setting['visi_about_us']"></div>
+                    </div>
+                </div>
+                <div v-else>
+                    <p>No Data</p>
+                    <p>Default Content</p>
+                </div>
             </div>
         </div>
     </div>
@@ -118,6 +124,7 @@ export default {
             styleValue: '',
             styleParent: '',
             widthSize: '',
+            styleText: 'margin-bottom: 0.4rem',
             isInfoTextVisible: false,
         };
     },
@@ -186,21 +193,29 @@ export default {
         // },
         moveRing() {
             const ring = document.querySelector(".ring");
+            const text = document.querySelector("#infoText");
             switch (this.motto) {
                 case 'Vision':
-                    ring.style.transform = "translate(-73%, 0%) rotate(60deg) ";
+                    ring.style.transform = this.widthSize < 770
+                        ? "rotate(90deg)"
+                        : "translate(-73%, 0%) rotate(60deg)";
                     this.styleVision = this.widthSize < 770
-                        ? "transform: rotate(0deg)"
+                        ? "transform: rotate(269deg); left: 80%; top: 27%;"
                         : "transform: rotate(300deg)";
                     this.styleMission = this.widthSize < 770
-                        ? "transform: rotate(0deg)"
+                        ? "transform: rotate(269deg); left: 10%; bottom: 75%;"
                         : "transform: rotate(300deg)";
                     this.styleValue = this.widthSize < 770
-                        ? "transform: rotate(0deg)"
+                        ? "transform: rotate(269deg); right: 55%; bottom: -15%;"
                         : "transform: rotate(300deg)";
+                    text.style.transform = this.widthSize < 770
+                        ? "translate(0%, 35%)"
+                        : "translate(-23%, -23%)";
                     break;
                 case "Mission":
-                    ring.style.transform = "translate(-73%, 0%) rotate(170deg)";
+                    ring.style.transform = this.widthSize < 770
+                        ? "translate(0%, 0%) rotate(-90deg)"
+                        : "translate(-73%, 0%) rotate(170deg)";
                     this.styleVision = this.widthSize < 770
                         ? "transform: rotate(90deg)"
                         : "transform: rotate(190deg)";
@@ -210,18 +225,26 @@ export default {
                     this.styleValue = this.widthSize < 770
                         ? "transform: rotate(90deg)"
                         : "transform: rotate(189deg)";
+                    text.style.transform = this.widthSize < 770
+                        ? "translate(0%, 15%)"
+                        : "translate(-23%, -23%)";
                     break;
                 case "Value":
-                    ring.style.transform = "translate(-73%, 0%) rotate(290deg)";
+                    ring.style.transform = this.widthSize < 770
+                        ? "translate(0%, 0%) rotate(90deg)"
+                        : "translate(-73%, 0%) rotate(290deg)";
                     this.styleVision = this.widthSize < 770
-                        ? "transform: rotate(329deg)"
+                        ? "transform: rotate(270deg); top: -15%; right: 55%;"
                         : "transform: rotate(70deg)";
                     this.styleMission = this.widthSize < 770
-                        ? "transform: rotate(326deg)"
+                        ? "transform: rotate(270deg); bottom: -15%; left: 5%"
                         : "transform: rotate(70deg)";
                     this.styleValue = this.widthSize < 770
-                        ? "transform: rotate(330deg)"
+                        ? "transform: rotate(270deg); bottom: 30%; right: -20%;"
                         : "transform: rotate(70deg)";
+                    text.style.transform = this.widthSize < 770
+                        ? "translate(0%, 15%)"
+                        : "translate(-23%, -23%)";
                     break;
             }
 

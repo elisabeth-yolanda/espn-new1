@@ -38,11 +38,11 @@
                             </div>
                         </div>
                     </div>
-                    <div v-else class="col-lg-4 col-md-6" v-for="(item, index) in news" :key="index">
+                    <div v-else class="col-lg-4 col-md-6 mt-5" v-for="(item, index) in news" :key="index">
                         <router-link :to="`/news/${item.slug}`"
-                            class="card border-0 radius-10 text-decoration-none hover-shadow-lg" style="height: 465px; width: 415px">
+                            class="card border-0 radius-10 text-decoration-none hover-shadow-lg" style="height: 465px; width: 100%">
                             <div>
-                                <img style="width: 415px; height: 200px; object-fit: cover; padding:1%" class="object-cover-center radius-10"
+                                <img style="width: 100%; height: 200px; object-fit: cover; padding:1%" class="object-cover-center radius-10"
                                     :src="item.thumbnail" />
                             </div>
                             <div class="card-body p-4">
@@ -91,7 +91,7 @@ export default {
         async getData() {
             this.loadingNews = true;
             try {
-                const res = await axios.get('/api/news/getAll?limit=3');
+                const res = await axios.get('/api/news/getAll?');
                 res.data.data.forEach((item) => {
                     item.content = parseHtml(item.content).length > 100 ? parseHtml(item.content).substring(0, 100) + '...' : parseHtml(item.content);
                     item.created_at = moment(item.created_at).format('YYYY, MMMM DD');

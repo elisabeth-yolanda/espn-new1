@@ -90,6 +90,7 @@ export default {
         }
     },
     mounted() {
+        this.scrollToTop();
         this.getClients();
         this.getBusiness();
     },
@@ -130,6 +131,12 @@ export default {
         },
         scrollToOffset() {
             this.containerElement.scrollLeft = this.scrollOffset;
+        },
+        scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
         }
     }
 };

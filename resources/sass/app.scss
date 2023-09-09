@@ -1033,18 +1033,29 @@ $color in $theme-colors {
     //cursor: pointer;
     transition: transform 2s ease-in-out;
     //transition: 2s all ease
+    @media (max-width: 768px) {
+
+    }
 }
 
 #infoText {
     display: none;
-    position: absolute;
-    top: 22%;
-    left: 50%;
-    background-color: #f9f9f9;
+    //position: absolute;
+    //top: 22%;
+    //transform: translate(-50%, -50%);
+    //background-color: #f9f9f9;
     padding: 5px;
-    border-radius: 5px;
-    z-index: 1;
+    //border-radius: 5px;
+    //z-index: -1;
     transition: 1s all ease;
+}
+
+@media (max-width: 768px) {
+    #infoText {
+        //top: auto;
+        //transform: none;
+        //margin-top: 110%;
+    }
 }
 
 .hero {
@@ -1313,7 +1324,7 @@ footer {
             width: 180px;
             height: 80%;
             @media (max-width: 767px) {
-                width: 70px;
+                width: 50px;
                 height: 80%;
             }
         }
@@ -1359,7 +1370,7 @@ footer {
 }
 
 .hover-shadow-lg {
-    transition: 0.6 all ease;
+    transition: 0.6s all ease;
     &:hover {
         box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
     }
@@ -1379,6 +1390,25 @@ footer {
     &:hover {
         .arrow-button {
             display: block;
+        }
+    }
+}
+
+.aboutUs-top{
+    height: 45vh;
+    @media screen and (max-width: 720px) {
+        height: 30%;
+        .font-year {
+            font-size: 15px;
+        }
+        .font-description {
+            font-size: 10px;
+        }
+        .scroll-aboutUs{
+            margin-top: -5%;
+        }
+        .icon-aboutUs{
+            margin-top: 5%;
         }
     }
 }
