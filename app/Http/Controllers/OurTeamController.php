@@ -45,7 +45,7 @@ class OurTeamController extends Controller
             'name' => 'required',
             'position' => 'required',
             'quote' => 'required',
-            'image' => (!$data) ? 'required|' : ''. 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => (!$data) ? 'required|' : ''. 'image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
         if($validasi->fails()) {

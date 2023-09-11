@@ -44,7 +44,7 @@ class WayWeDoBusinessController extends Controller
         $validasi = Validator::make($input,[
             'name' => 'required',
             'description' => 'required',
-            'icon' => (!$data) ? 'required|' : ''. 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'icon' => (!$data) ? 'required|' : ''. 'image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
         if($validasi->fails()) {

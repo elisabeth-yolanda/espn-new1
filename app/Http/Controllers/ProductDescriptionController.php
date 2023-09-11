@@ -46,7 +46,7 @@ class ProductDescriptionController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'image' => (!$data) ? 'required|' : ''. 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => (!$data) ? 'required|' : ''. 'image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
         if($request->hasFile('image')){
